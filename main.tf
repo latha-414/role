@@ -5,7 +5,7 @@ resource "snowflake_account_role" "hcpuser" {
 }
 
 # Grant ownership of HCPUSER role to SYSADMIN
-resource "snowflake_role_ownership_grant" "hcpuser_ownership" {
+resource "snowflake_role_ownership_grant" "role_ownership_transfer" {
   role_name = snowflake_account_role.hcpuser.name
   to_role   = "SYSADMIN"
   
