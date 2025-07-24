@@ -11,9 +11,8 @@ resource "snowflake_grant_ownership" "hcpuser_ownership" {
     object_name = snowflake_account_role.hcpuser.name
   }
   
-  to_role_name = "SYSADMIN"
+  to_account_role_name = "SYSADMIN"
   
   # This ensures the grant happens after the role is managed by Terraform
   depends_on = [snowflake_account_role.hcpuser]
 }
-
