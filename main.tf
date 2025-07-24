@@ -1,0 +1,14 @@
+# Import the existing HCPUSER role
+resource "snowflake_role" "hcpuser" {
+  name    = "HCPUSER"
+  comment = "HCP User role - ownership transferred to SYSADMIN"
+}
+
+# Grant ownership of HCPUSER role to SYSADMIN
+resource "snowflake_role_ownership_grant" "hcpuser_ownership" {
+  role_name   = snowflake_role.hcpuser.name
+  to_role     = "SYSADMIN"
+  
+  # This ensures the grant happens after the role is managed by Terraform
+  depends_on = [snowflake_role.hcpuser]
+}
