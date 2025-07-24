@@ -6,9 +6,7 @@ resource "snowflake_role" "hcpuser" {
 
 # Grant ownership of HCPUSER role to SYSADMIN
 resource "snowflake_role_ownership_grant" "role_ownership_transfer" {
-  role_name = snowflake_account_role.hcpuser.name
-  to_role   = "SYSADMIN"
-  
-  # This ensures the grant happens after the role is managed by Terraform
-  depends_on = [snowflake_account_role.hcpuser]
+  on_role_name = snowflake_role.hcpuser.name  # The role to change ownership of
+  to_role_name = "SYSADMIN"                   # The role to transfer ownership to
+  depends_on = [snowflake_role.hcpuser]
 }
