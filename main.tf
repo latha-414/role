@@ -1,5 +1,5 @@
 # Import the existing HCPUSER role (using new resource type)
-resource "snowflake_account_role" "hcpuser" {
+resource "snowflake_role" "hcpuser" {
   name    = "HCPUSER"
   comment = "HCP User role - ownership transferred to SYSADMIN"
 }
